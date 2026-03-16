@@ -1,0 +1,13 @@
+{
+  "name": "yhosw-skills",
+  "description": "Personal skill library: security, scalability, frontend-design, trigger-dev, composio, n8n, cost-reducer, researcher, know-me, self-healing, customer-support",
+  "version": "1.0.0",
+  "author": {
+    "name": "Yhoswar",
+    "email": ""
+  },
+  "homepage": "https://github.com/Yhoswar/claude-skills",
+  "repository": "https://github.com/Yhoswar/claude-skills",
+  "license": "MIT",
+  "keywords": ["skills", "security", "scalability", "frontend", "automation", "ai"]
+}
