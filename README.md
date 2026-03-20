@@ -55,7 +55,7 @@ Estas skills se instalan copiando este repo o registrándolo como marketplace (v
 | Skill | Carpeta | Descripción |
 |-------|---------|-------------|
 | **cost-reducer** | `/cost-reducer/` | Optimización de costos cloud/infra, queries, CDN, serverless |
-| **humanizer** | (pendiente agregar) | Eliminar señales de escritura AI en textos |
+| **humanizer** | `/humanizer/` | Eliminar señales de escritura AI en textos |
 | **researcher** | `/researcher/` | Investigación profunda con web search y síntesis multi-fuente |
 | **security** | `/security/` | Seguridad web/desktop — OWASP Top 10, XSS, CSRF, SQL injection |
 | **self-healing** | `/self-healing/` | Auto-mejora: patrones, memoria, creación de skills |
