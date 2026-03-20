@@ -67,6 +67,9 @@ Estas skills se instalan copiando este repo o registrándolo como marketplace (v
 | **n8n** | `/n8n/` | Automatización de flujos con n8n |
 | **scalability** | `/scalability/` | Patrones de escalabilidad para sistemas |
 | **trigger-dev** | `/trigger-dev/` | Jobs y tareas en background con Trigger.dev |
+| **claude-seo** | `/claude-seo/` | Suite SEO completa (audit, keywords, meta, schema, speed, etc.) — **instalar por proyecto** |
+
+> **Nota:** `claude-seo` se recomienda instalar localmente por proyecto según necesidad, no globalmente.
 
 **Instalación manual (nueva PC):**
 ```bash
