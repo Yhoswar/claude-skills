@@ -2,7 +2,7 @@
 
 Repositorio privado de **Yhosw** para replicar el setup completo de Claude Code en cualquier PC nueva.
 
-> **Fecha de última actualización:** 2026-03-20
+> **Fecha de última actualización:** 2026-03-22
 > **Modelo preferido:** `opusplan` | **Canal:** `latest`
 
 ---
@@ -68,14 +68,43 @@ Estas skills se instalan copiando este repo o registrándolo como marketplace (v
 | **scalability** | `/scalability/` | Patrones de escalabilidad para sistemas |
 | **trigger-dev** | `/trigger-dev/` | Jobs y tareas en background con Trigger.dev |
 | **claude-seo** | `/claude-seo/` | Suite SEO completa (audit, keywords, meta, schema, speed, etc.) — **instalar por proyecto** |
+| **emil-design-eng** | *(marketplace)* | Filosofía UI de Emil Kowalski — polish, animaciones, detalles invisibles |
+| **web-accessibility** | *(marketplace)* | Accesibilidad web WCAG 2.1 — ARIA, keyboard nav, screen readers |
+| **web-design-guidelines** | *(marketplace)* | Revisión de UI contra Web Interface Guidelines |
 
 > **Nota:** `claude-seo` se recomienda instalar localmente por proyecto según necesidad, no globalmente.
+> **Nota:** `emil-design-eng`, `web-accessibility`, `web-design-guidelines` provienen del marketplace (plugin cache), no tienen carpeta en este repo.
 
 **Instalación manual (nueva PC):**
 ```bash
 git clone https://github.com/Yhoswar/claude-skills.git ~/.claude/skills/yhosw-skills
 ```
 O bien registrar como marketplace propio (ver sección 5).
+
+---
+
+## 2.5 Skills Externas (anthropics/skills)
+
+Skills del repo oficial [`anthropics/skills`](https://github.com/anthropics/skills). **No se incluyen en este repo** para mantenerlo liviano. Se instalan como `.md` sueltos en `~/.claude/skills/`.
+
+| Skill | Descripción |
+|-------|-------------|
+| **mcp-builder** | Guía para construir MCP servers en Python (FastMCP) y TypeScript |
+| **pdf** | Operaciones PDF: merge, split, OCR, extraer texto/tablas, forms, cifrado |
+| **docx** | Crear/editar archivos Word (.docx) con tablas de contenido, headings, etc. |
+
+**Instalación (una vez, nueva PC):**
+```bash
+BASE="https://github.com/anthropics/skills/raw/refs/heads/main/skills"
+curl -sL "$BASE/mcp-builder/SKILL.md" -o ~/.claude/skills/mcp-builder.md
+curl -sL "$BASE/pdf/SKILL.md"         -o ~/.claude/skills/pdf.md
+curl -sL "$BASE/docx/SKILL.md"        -o ~/.claude/skills/docx.md
+```
+
+**Otras disponibles** (instalar según proyecto):
+- `algorithmic-art` — arte generativo con p5.js (flow fields, partículas)
+- `canvas-design` — diseños visuales estáticos (PNG/PDF, posters)
+- `doc-coauthoring` — co-autoría estructurada de documentación (specs, PRDs, RFCs)
 
 ---
 
@@ -216,10 +245,16 @@ claude mcp add nano-banana -- npx -y nano-banana-mcp
 claude mcp add stitch --transport http https://stitch.googleapis.com/mcp
 claude mcp add figma --transport http https://mcp.figma.com/mcp
 
-# 5. Configurar CLAUDE.md global
+# 5. Instalar skills externas (anthropics/skills)
+BASE="https://github.com/anthropics/skills/raw/refs/heads/main/skills"
+curl -sL "$BASE/mcp-builder/SKILL.md" -o ~/.claude/skills/mcp-builder.md
+curl -sL "$BASE/pdf/SKILL.md"         -o ~/.claude/skills/pdf.md
+curl -sL "$BASE/docx/SKILL.md"        -o ~/.claude/skills/docx.md
+
+# 6. Configurar CLAUDE.md global
 # Copiar ~/.claude/CLAUDE.md desde backup o crear uno nuevo
 
-# 6. Verificar setup
+# 7. Verificar setup
 claude mcp list
 ```
 
@@ -238,7 +273,8 @@ claude mcp list
 | Categoría | Cantidad |
 |-----------|----------|
 | Plugins/Skills de marketplace | 8 activos |
-| Skills locales en este repo | 13 |
+| Skills locales en este repo | 14 (+3 marketplace) |
+| Skills externas (anthropics/skills) | 3 instaladas + 3 disponibles |
 | MCP servers externos (CLI) | 5 activos + 1 fallido |
 | MCP servers claude.ai | 3 (OAuth) |
-| **Total** | **~30 componentes** |
+| **Total** | **~35 componentes** |
