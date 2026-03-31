@@ -26,7 +26,7 @@ Instalación via `/install-skill <marketplace>` dentro de Claude Code.
 | Plugin | Repo GitHub | Versión | Skills incluidas | Comando de instalación |
 |--------|-------------|---------|-----------------|------------------------|
 | **superpowers** | `obra/superpowers-marketplace` | 5.0.2+ | TDD, systematic-debugging, brainstorming, planning, writing-plans, executing-plans, code-review, git-worktrees, parallel-agents, verification-before-completion, subagent-driven-development | `/install-skill superpowers-marketplace` |
-| **context-mode** | `mksglu/context-mode` | 1.0.25 | Plugin + MCP Server + Hooks (ahorro ~98% contexto, ctx_execute, ctx_batch_execute) | `/install-skill context-mode` |
+| **context-mode** | `mksglu/context-mode` | 1.0.22 | Plugin + MCP Server + Hooks (ahorro ~98% contexto, ctx_execute, ctx_batch_execute) | `/install-skill context-mode` |
 | **claude-mem** | `thedotmack/claude-mem` | 10.5.5 | Plugin + MCP Server (memoria cross-session, smart_search, timeline) | `/install-skill thedotmack` |
 | **claude-plugins-official** | `anthropics/claude-plugins-official` | — | frontend-design, code-review, skill-creator | `/install-skill claude-plugins-official` |
 | **ui-ux-pro-max** | `nextlevelbuilder/ui-ux-pro-max-skill` | 2.0.1 | Diseño UI/UX (50+ estilos, 10 stacks, 161 paletas) | `/install-skill ui-ux-pro-max-skill` |
@@ -137,6 +137,7 @@ Configurados via `claude mcp add`. Requieren tokens/API keys propios.
 | **nano-banana** | `claude mcp add nano-banana -- npx -y nano-banana-mcp` | ✓ Connected | Generación/edición de imágenes con Gemini |
 | **stitch** | `claude mcp add stitch --transport http https://stitch.googleapis.com/mcp` | ✓ Connected | Stitch by Google |
 | **figma** | `claude mcp add figma --transport http https://mcp.figma.com/mcp` | ✓ Connected | Lectura/escritura de diseños Figma — requiere token Figma |
+| **n8n-mcp** | `claude mcp add n8n-mcp -- npx -y n8n-mcp` | ✓ Connected | n8n workflow automation — requiere N8N_API_URL y N8N_API_KEY |
 | **Mermaid Chart** | `claude mcp add mermaid-chart --transport http https://chatgpt.mermaid.ai/anthropic/mcp` | ✗ Failed | Validación y render de diagramas Mermaid |
 
 > **Nota para Figma y Stitch:** Son servidores HTTP, usar flag `--transport http`.
@@ -148,6 +149,8 @@ Configurados via `claude mcp add`. Requieren tokens/API keys propios.
 |-----|----------|-------------|
 | nano-banana | `GEMINI_API_KEY` | Clave de Google AI Studio |
 | figma | Token en header | Configurar via `claude mcp add figma -H "Authorization: Bearer <TOKEN>"` |
+| n8n-mcp | `N8N_API_URL` | URL local de n8n (ej. `http://localhost:5678`) |
+| n8n-mcp | `N8N_API_KEY` | API key generada desde n8n Settings → API |
 
 ---
 
@@ -157,9 +160,9 @@ Estos MCP se conectan desde claude.ai y requieren autenticación OAuth en la pri
 
 | MCP Server | URL | Estado |
 |------------|-----|--------|
-| **Airtable** | `https://mcp.airtable.com/mcp` | Needs authentication |
-| **Gmail** | `https://gmail.mcp.claude.com/mcp` | Needs authentication |
-| **Google Calendar** | `https://gcal.mcp.claude.com/mcp` | Needs authentication |
+| **Airtable** | `https://mcp.airtable.com/mcp` | ✓ Conectado |
+| **Gmail** | `https://gmail.mcp.claude.com/mcp` | ⚠ Pendiente (OAuth no completado) |
+| **Google Calendar** | `https://gcal.mcp.claude.com/mcp` | ⚠ Pendiente (OAuth no completado) |
 
 > Estos se instalan desde la interfaz de Claude.ai, no desde CLI.
 
@@ -262,6 +265,7 @@ claude mcp add 21st-magic -- npx -y @21st-dev/magic@latest
 claude mcp add nano-banana -- npx -y nano-banana-mcp
 claude mcp add stitch --transport http https://stitch.googleapis.com/mcp
 claude mcp add figma --transport http https://mcp.figma.com/mcp
+claude mcp add n8n-mcp -- npx -y n8n-mcp   # requiere N8N_API_URL y N8N_API_KEY en env
 
 # 5. Instalar skills externas (anthropics/skills)
 BASE="https://github.com/anthropics/skills/raw/refs/heads/main/skills"
@@ -293,6 +297,6 @@ claude mcp list
 | Plugins/Skills de marketplace | 8 activos |
 | Skills locales en este repo | 14 (+3 marketplace) |
 | Skills externas (anthropics/skills) | 3 instaladas + 3 disponibles |
-| MCP servers externos (CLI) | 5 activos + 1 fallido |
+| MCP servers externos (CLI) | 6 activos + 1 fallido |
 | MCP servers claude.ai | 3 (OAuth) |
 | **Total** | **~35 componentes** |
