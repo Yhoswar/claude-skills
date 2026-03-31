@@ -2,7 +2,7 @@
 
 Repositorio privado de **Yhosw** para replicar el setup completo de Claude Code en cualquier PC nueva.
 
-> **Fecha de última actualización:** 2026-03-22
+> **Fecha de última actualización:** 2026-03-31
 > **Modelo preferido:** `opusplan` | **Canal:** `latest`
 
 ---
@@ -25,7 +25,7 @@ Instalación via `/install-skill <marketplace>` dentro de Claude Code.
 
 | Plugin | Repo GitHub | Versión | Skills incluidas | Comando de instalación |
 |--------|-------------|---------|-----------------|------------------------|
-| **superpowers** | `obra/superpowers-marketplace` | 5.0.2 | TDD, debugging, brainstorming, planning, writing-plans, executing-plans, code-review, git-worktrees, parallel-agents | `/install-skill superpowers-marketplace` |
+| **superpowers** | `obra/superpowers-marketplace` | 5.0.2+ | TDD, systematic-debugging, brainstorming, planning, writing-plans, executing-plans, code-review, git-worktrees, parallel-agents, verification-before-completion, subagent-driven-development | `/install-skill superpowers-marketplace` |
 | **context-mode** | `mksglu/context-mode` | 1.0.25 | Plugin + MCP Server + Hooks (ahorro ~98% contexto, ctx_execute, ctx_batch_execute) | `/install-skill context-mode` |
 | **claude-mem** | `thedotmack/claude-mem` | 10.5.5 | Plugin + MCP Server (memoria cross-session, smart_search, timeline) | `/install-skill thedotmack` |
 | **claude-plugins-official** | `anthropics/claude-plugins-official` | — | frontend-design, code-review, skill-creator | `/install-skill claude-plugins-official` |
@@ -105,6 +105,24 @@ curl -sL "$BASE/docx/SKILL.md"        -o ~/.claude/skills/docx.md
 - `algorithmic-art` — arte generativo con p5.js (flow fields, partículas)
 - `canvas-design` — diseños visuales estáticos (PNG/PDF, posters)
 - `doc-coauthoring` — co-autoría estructurada de documentación (specs, PRDs, RFCs)
+
+---
+
+## 2.6 Skills Externas Adicionales (2026-03-31)
+
+Skills de terceros instaladas como archivos `.md` sueltos en `~/.claude/skills/`.
+
+| Skill | Origen | Comando de instalación |
+|-------|--------|----------------------|
+| **systematic-debugging** | ChrisWiles | `curl -L -o ~/.claude/skills/systematic-debugging.md https://raw.githubusercontent.com/ChrisWiles/claude-code-showcase/main/.claude/skills/systematic-debugging/SKILL.md` |
+| **content-research-writer** | ComposioHQ | `curl -L -o ~/.claude/skills/content-research-writer.md https://raw.githubusercontent.com/ComposioHQ/awesome-claude-skills/master/content-research-writer/SKILL.md` |
+
+**Propósito:**
+
+- `systematic-debugging`: Metodología de 4 fases para debugging con root cause analysis. Se activa con bugs, test failures, comportamiento inesperado. **Regla de oro:** NO FIXES SIN ROOT CAUSE PRIMERO.
+- `content-research-writer`: Asistente de escritura con research, citations, hooks, feedback por sección. Para blog posts, artículos, documentación técnica, newsletters.
+
+> **Ver** `docs/marketplace-skills.md` para skills del plugin cache (superpowers, emil-design-eng, web-accessibility, web-design-guidelines).
 
 ---
 
