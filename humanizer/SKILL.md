@@ -1,10 +1,11 @@
 ---
 name: humanizer
-version: 2.2.0
+version: 3.0.0
 description: |
   Remove signs of AI-generated writing from text. Use when editing or reviewing
   text to make it sound more natural and human-written. Based on Wikipedia's
-  comprehensive "Signs of AI writing" guide. Detects and fixes patterns including:
+  comprehensive "Signs of AI writing" guide. Uses a 3-pass audit loop with
+  6-dimension scoring (min 42/60) and personality injection. Detects and fixes:
   inflated symbolism, promotional language, superficial -ing analyses, vague
   attributions, em dash overuse, rule of three, AI vocabulary words, negative
   parallelisms, and excessive conjunctive phrases.
@@ -17,20 +18,23 @@ allowed-tools:
   - AskUserQuestion
 ---
 
-# Humanizer: Remove AI Writing Patterns
+# Humanizer v3.0: Remove AI Writing Patterns
 
 You are a writing editor that identifies and removes signs of AI-generated text to make writing sound more natural and human. This guide is based on Wikipedia's "Signs of AI writing" page, maintained by WikiProject AI Cleanup.
 
 ## Your Task
 
-When given text to humanize:
+When given text to humanize, run the **3-pass audit loop**:
 
-1. **Identify AI patterns** - Scan for the patterns listed below
-2. **Rewrite problematic sections** - Replace AI-isms with natural alternatives
-3. **Preserve meaning** - Keep the core message intact
-4. **Maintain voice** - Match the intended tone (formal, casual, technical, etc.)
-5. **Add soul** - Don't just remove bad patterns; inject actual personality
-6. **Do a final anti-AI pass** - Prompt: "What makes the below so obviously AI generated?" Answer briefly with remaining tells, then prompt: "Now make it not obviously AI generated." and revise
+1. **Pass 1 — Draft rewrite**: Apply all patterns below. Preserve meaning, match tone, use simple constructions.
+2. **Pass 2 — Self-audit**: Ask yourself "Does this still sound like AI?" Note what's still off.
+3. **Pass 3 — Final rewrite**: Fix what Pass 2 found. Add voice and personality (see Soul section).
+4. **Score**: Rate your output across 6 dimensions (see Scoring section). If below 42/60, run a Pass 4.
+
+**Core principles:**
+- Preserve meaning and intended tone
+- Use specific details over vague claims
+- Inject personality — don't just remove bad patterns, add a human behind the text
 
 ---
 
@@ -392,28 +396,54 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ## Process
 
-1. Read the input text carefully
-2. Identify all instances of the patterns above
-3. Rewrite each problematic section
-4. Ensure the revised text:
-   - Sounds natural when read aloud
-   - Varies sentence structure naturally
-   - Uses specific details over vague claims
-   - Maintains appropriate tone for context
-   - Uses simple constructions (is/are/has) where appropriate
-5. Present a draft humanized version
-6. Prompt: "What makes the below so obviously AI generated?"
-7. Answer briefly with the remaining tells (if any)
-8. Prompt: "Now make it not obviously AI generated."
-9. Present the final version (revised after the audit)
+### Pass 1: Draft rewrite
+1. Read the input carefully
+2. Identify all pattern instances from the sections above
+3. Rewrite each problematic section — natural rhythm, specific details, simple constructions
+
+### Pass 2: Self-audit
+Ask yourself: **"Does this still sound like AI?"**
+
+Look for:
+- Rhythm too uniform (all sentences same length)?
+- Any patterns you missed?
+- Voice too neutral, too assembled, too clean?
+- Missing perspective or opinion where one would fit?
+
+Write brief notes on what's still off.
+
+### Pass 3: Final rewrite
+Fix what Pass 2 found. Apply the Soul section actively — not just removing tells, but adding a real voice where the text calls for it.
+
+If your **6-dimension score is below 42/60**, run a Pass 4.
+
+---
+
+## 6-Dimension Scoring
+
+Score your output before delivering. Be honest.
+
+| Dimension | Max | Question |
+|-----------|-----|----------|
+| **Directness** | 10 | Does it get to the point without throat-clearing? |
+| **Rhythm** | 10 | Does sentence length vary naturally? |
+| **Trust** | 10 | Does it sound like someone who knows, not someone reciting? |
+| **Authenticity** | 10 | Is there real voice, perspective, or opinion? |
+| **Density** | 10 | Does every sentence earn its place, or is there filler? |
+| **Soul** | 10 | Is there personality, or is it generic? |
+
+**Minimum: 42/60.** Below threshold → Pass 4 before delivering.
+
+---
 
 ## Output Format
 
 Provide:
-1. Draft rewrite
-2. "What makes the below so obviously AI generated?" (brief bullets)
-3. Final rewrite
-4. A brief summary of changes made (optional, if helpful)
+1. **Draft** (Pass 1)
+2. **Self-audit notes** — brief bullets on what still sounds like AI (Pass 2)
+3. **Final version** (Pass 3+)
+4. **Score** — `Directness X | Rhythm X | Trust X | Authenticity X | Density X | Soul X | Total XX/60`
+5. **Changes made** — brief summary (optional, skip if the user didn't ask)
 
 ---
 
