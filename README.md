@@ -114,13 +114,13 @@ Skills de terceros instaladas como archivos `.md` sueltos en `~/.claude/skills/`
 
 | Skill | Origen | Comando de instalación |
 |-------|--------|----------------------|
-| **systematic-debugging** | ChrisWiles | `curl -L -o ~/.claude/skills/systematic-debugging.md https://raw.githubusercontent.com/ChrisWiles/claude-code-showcase/main/.claude/skills/systematic-debugging/SKILL.md` |
 | **content-research-writer** | ComposioHQ | `curl -L -o ~/.claude/skills/content-research-writer.md https://raw.githubusercontent.com/ComposioHQ/awesome-claude-skills/master/content-research-writer/SKILL.md` |
 
 **Propósito:**
 
-- `systematic-debugging`: Metodología de 4 fases para debugging con root cause analysis. Se activa con bugs, test failures, comportamiento inesperado. **Regla de oro:** NO FIXES SIN ROOT CAUSE PRIMERO.
 - `content-research-writer`: Asistente de escritura con research, citations, hooks, feedback por sección. Para blog posts, artículos, documentación técnica, newsletters.
+
+> **Nota:** `systematic-debugging` (ChrisWiles) fue eliminado — redundante con `superpowers:systematic-debugging` que ya cubre la misma funcionalidad.
 
 > **Ver** `docs/marketplace-skills.md` para skills del plugin cache (superpowers, emil-design-eng, web-accessibility, web-design-guidelines).
 
