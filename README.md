@@ -126,6 +126,41 @@ Skills de terceros instaladas como archivos `.md` sueltos en `~/.claude/skills/`
 
 ---
 
+## 2.7 Skills de Desarrollo — gstack (garrytan/gstack)
+
+Pack de 32 skills de Garry Tan (CEO de Y Combinator). Simula un equipo completo: CEO, Eng Manager, Designer, QA, Release Manager. **62k estrellas en GitHub.**
+
+**Instalación (nueva PC):**
+```bash
+git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack
+cd ~/.claude/skills/gstack && ./setup
+```
+
+Requiere: **Bun** + **Node.js** (para /browse via Playwright)
+
+**Skills incluidas (32):**
+
+| Rol | Skills |
+|-----|--------|
+| CEO / Producto | `/office-hours`, `/plan-ceo-review`, `/autoplan` |
+| Eng Manager | `/plan-eng-review`, `/review`, `/codex` |
+| Designer | `/design-consultation`, `/design-shotgun`, `/design-html`, `/plan-design-review`, `/design-review` |
+| Release Manager | `/ship`, `/land-and-deploy`, `/canary`, `/document-release` |
+| QA | `/qa`, `/qa-only`, `/benchmark`, `/health` |
+| Chrome / Browser | `/browse`, `/connect-chrome`, `/setup-browser-cookies` |
+| Seguridad prod | `/careful`, `/freeze`, `/guard`, `/unfreeze` |
+| Utilidades | `/retro`, `/investigate`, `/cso`, `/learn`, `/checkpoint`, `/gstack-upgrade` |
+
+**CLAUDE.md global requerido:**
+```
+## gstack
+Usar /browse de gstack para todo web browsing. Nunca usar mcp__claude-in-chrome__*.
+```
+
+> **Nota:** gstack se instala como subdirectorio `~/.claude/skills/gstack/`. No solapa con ningún skill suelto.
+
+---
+
 ## 3. MCP Servers Externos
 
 Configurados via `claude mcp add`. Requieren tokens/API keys propios.
