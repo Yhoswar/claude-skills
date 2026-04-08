@@ -2,7 +2,7 @@
 
 Repositorio privado de **Yhosw** para replicar el setup completo de Claude Code en cualquier PC nueva.
 
-> **Fecha de última actualización:** 2026-03-31
+> **Fecha de última actualización:** 2026-04-08
 > **Modelo preferido:** `opusplan` | **Canal:** `latest`
 
 ---
@@ -25,14 +25,14 @@ Instalación via `/install-skill <marketplace>` dentro de Claude Code.
 
 | Plugin | Repo GitHub | Versión | Skills incluidas | Comando de instalación |
 |--------|-------------|---------|-----------------|------------------------|
-| **superpowers** | `obra/superpowers-marketplace` | 5.0.2+ | TDD, systematic-debugging, brainstorming, planning, writing-plans, executing-plans, code-review, git-worktrees, parallel-agents, verification-before-completion, subagent-driven-development | `/install-skill superpowers-marketplace` |
+| ~~**superpowers**~~ *(DESHABILITADO)* | `obra/superpowers-marketplace` | 5.0.2+ | TDD, systematic-debugging, brainstorming, planning, writing-plans, executing-plans, code-review, git-worktrees, parallel-agents, verification-before-completion, subagent-driven-development | `/install-skill superpowers-marketplace` |
 | **context-mode** | `mksglu/context-mode` | 1.0.22 | Plugin + MCP Server + Hooks (ahorro ~98% contexto, ctx_execute, ctx_batch_execute) | `/install-skill context-mode` |
 | **claude-mem** | `thedotmack/claude-mem` | 10.5.5 | Plugin + MCP Server (memoria cross-session, smart_search, timeline) | `/install-skill thedotmack` |
 | **claude-plugins-official** | `anthropics/claude-plugins-official` | — | frontend-design, code-review, skill-creator | `/install-skill claude-plugins-official` |
 | **ui-ux-pro-max** | `nextlevelbuilder/ui-ux-pro-max-skill` | 2.0.1 | Diseño UI/UX (50+ estilos, 10 stacks, 161 paletas) | `/install-skill ui-ux-pro-max-skill` |
 | **yhosw-skills** | `Yhoswar/claude-skills` | — | Skills locales de este repo | Ver sección 2 y 5 |
 
-**Skills activas en settings.json:**
+**Skills activas en settings.json** *(7 activas + 1 deshabilitada)*:
 ```json
 "enabledPlugins": {
   "frontend-design@claude-plugins-official": true,
@@ -40,11 +40,13 @@ Instalación via `/install-skill <marketplace>` dentro de Claude Code.
   "skill-creator@claude-plugins-official": true,
   "claude-mem@thedotmack": true,
   "ui-ux-pro-max@ui-ux-pro-max-skill": true,
-  "superpowers@superpowers-marketplace": true,
+  "superpowers@superpowers-marketplace": false,
   "context-mode@context-mode": true,
   "yhosw-skills@yhosw-skills": true
 }
 ```
+
+> **Nota (2026-04-08):** `superpowers` deshabilitado — funcionalidad cubierta por `claude-mem` + `gstack`. Se mantiene en `extraKnownMarketplaces` por si se reactiva.
 
 ---
 
@@ -120,7 +122,7 @@ Skills de terceros instaladas como archivos `.md` sueltos en `~/.claude/skills/`
 
 - `content-research-writer`: Asistente de escritura con research, citations, hooks, feedback por sección. Para blog posts, artículos, documentación técnica, newsletters.
 
-> **Nota:** `systematic-debugging` (ChrisWiles) fue eliminado — redundante con `superpowers:systematic-debugging` que ya cubre la misma funcionalidad.
+> **Nota:** `systematic-debugging` (ChrisWiles) fue eliminado — redundante con `superpowers:systematic-debugging`. Nota: `superpowers` también fue deshabilitado el 2026-04-08 (cubierto por `claude-mem` + `gstack`).
 
 > **Ver** `docs/marketplace-skills.md` para skills del plugin cache (superpowers, emil-design-eng, web-accessibility, web-design-guidelines).
 
@@ -161,19 +163,47 @@ Usar /browse de gstack para todo web browsing. Nunca usar mcp__claude-in-chrome_
 
 ---
 
+## 2.8 Agent-Skill Maps (por dominio)
+
+El archivo `~/.claude/agent-skill-map.md` fue dividido en 4 archivos de dominio para reducir tokens cargados por sesión. Solo el archivo relevante al proyecto activo se carga:
+
+| Archivo | Dominio |
+|---------|---------|
+| `~/.claude/agent-skill-map-seo.md` | SEO — skills de auditoría, keywords, schema, local |
+| `~/.claude/agent-skill-map-ads.md` | Publicidad paga — Google, Meta, LinkedIn, TikTok, etc. |
+| `~/.claude/agent-skill-map-marketing.md` | Marketing — CRO, copy, email, social, branding |
+| `~/.claude/agent-skill-map-design.md` | Diseño — UI/UX, frontend, creative strategy |
+
+> **Optimización (2026-04-08):** Esta división redujo el overhead de tokens en sesiones no-SEO/ads de ~47k a ~13k tokens (~72% reducción).
+
+---
+
 ## 3. MCP Servers Externos
 
 Configurados via `claude mcp add`. Requieren tokens/API keys propios.
 
+### 3.1 MCP Servers Globales
+
+Disponibles en todas las sesiones.
+
 | MCP Server | Comando de instalación | Estado | Notas |
 |------------|----------------------|--------|-------|
 | **context7** | `claude mcp add context7 -- npx -y @upstash/context7-mcp` | ✓ Connected | Docs up-to-date de librerías |
-| **21st-magic** | `claude mcp add 21st-magic -- npx -y @21st-dev/magic@latest` | ✓ Connected | Componentes UI de 21st.dev |
 | **nano-banana** | `claude mcp add nano-banana -- npx -y nano-banana-mcp` | ✓ Connected | Generación/edición de imágenes con Gemini |
-| **stitch** | `claude mcp add stitch --transport http https://stitch.googleapis.com/mcp` | ✓ Connected | Stitch by Google |
-| **figma** | `claude mcp add figma --transport http https://mcp.figma.com/mcp` | ✓ Connected | Lectura/escritura de diseños Figma — requiere token Figma |
 | **n8n-mcp** | `claude mcp add n8n-mcp -- npx -y n8n-mcp` | ✓ Connected | n8n workflow automation — requiere N8N_API_URL y N8N_API_KEY |
 | **Mermaid Chart** | `claude mcp add mermaid-chart --transport http https://chatgpt.mermaid.ai/anthropic/mcp` | ✗ Failed | Validación y render de diagramas Mermaid |
+
+### 3.2 MCP Servers por Proyecto (project-scoped)
+
+Solo disponibles en el proyecto donde se configuraron. Se instalan con `claude mcp add <nombre> -s project`.
+
+| MCP Server | Comando de instalación | Notas |
+|------------|----------------------|-------|
+| **21st-magic** | `claude mcp add 21st-magic -s project -- npx -y @21st-dev/magic@latest` | Componentes UI de 21st.dev |
+| **stitch** | `claude mcp add stitch -s project --transport http https://stitch.googleapis.com/mcp` | Stitch by Google |
+| **figma** | `claude mcp add figma -s project --transport http https://mcp.figma.com/mcp` | Lectura/escritura de diseños Figma — requiere token Figma |
+
+> **Por qué project-scoped:** Figma, Stitch y 21st-magic son herramientas de diseño que solo se necesitan en proyectos con trabajo de UI. Mantenerlos globales añade overhead innecesario en proyectos de backend o automatización.
 
 > **Nota para Figma y Stitch:** Son servidores HTTP, usar flag `--transport http`.
 > **Nota para context7, 21st-magic, nano-banana:** Son servidores npx locales, no llevan flag de transport.
@@ -243,7 +273,7 @@ Luego instalar con:
     "skill-creator@claude-plugins-official": true,
     "claude-mem@thedotmack": true,
     "ui-ux-pro-max@ui-ux-pro-max-skill": true,
-    "superpowers@superpowers-marketplace": true,
+    "superpowers@superpowers-marketplace": false,
     "context-mode@context-mode": true,
     "yhosw-skills@yhosw-skills": true
   },
@@ -287,20 +317,25 @@ npm install -g @anthropic-ai/claude-code
 # (editar ~/.claude/settings.json con los extraKnownMarketplaces de la sección 6)
 
 # 3. Instalar plugins de marketplace (dentro de Claude Code)
-/install-skill superpowers-marketplace
+# Obligatorios:
 /install-skill context-mode
 /install-skill thedotmack
 /install-skill claude-plugins-official
 /install-skill ui-ux-pro-max-skill
 /install-skill yhosw-skills
+# Opcional (actualmente deshabilitado):
+# /install-skill superpowers-marketplace
 
-# 4. Configurar MCP servers externos
+# 4. Configurar MCP servers externos — GLOBALES
 claude mcp add context7 -- npx -y @upstash/context7-mcp
-claude mcp add 21st-magic -- npx -y @21st-dev/magic@latest
 claude mcp add nano-banana -- npx -y nano-banana-mcp
-claude mcp add stitch --transport http https://stitch.googleapis.com/mcp
-claude mcp add figma --transport http https://mcp.figma.com/mcp
 claude mcp add n8n-mcp -- npx -y n8n-mcp   # requiere N8N_API_URL y N8N_API_KEY en env
+
+# 4b. MCP servers PROJECT-SCOPED (solo en proyectos con diseño UI)
+# Ejecutar dentro de la carpeta del proyecto:
+# claude mcp add 21st-magic -s project -- npx -y @21st-dev/magic@latest
+# claude mcp add stitch -s project --transport http https://stitch.googleapis.com/mcp
+# claude mcp add figma -s project --transport http https://mcp.figma.com/mcp
 
 # 5. Instalar skills externas (anthropics/skills)
 BASE="https://github.com/anthropics/skills/raw/refs/heads/main/skills"
@@ -319,8 +354,9 @@ claude mcp list
 
 ```bash
 claude mcp list
-# Debe mostrar: context7 ✓, 21st-magic ✓, nano-banana ✓, stitch ✓, figma ✓
+# Globales: context7 ✓, nano-banana ✓, n8n-mcp ✓
 # + plugin:claude-mem:mcp-search ✓, plugin:context-mode:context-mode ✓
+# Project-scoped (solo si configurados en el proyecto): 21st-magic, stitch, figma
 ```
 
 ---
@@ -329,9 +365,10 @@ claude mcp list
 
 | Categoría | Cantidad |
 |-----------|----------|
-| Plugins/Skills de marketplace | 8 activos |
+| Plugins/Skills de marketplace | 7 activos + 1 deshabilitado (superpowers) |
 | Skills locales en este repo | 14 (+3 marketplace) |
 | Skills externas (anthropics/skills) | 3 instaladas + 3 disponibles |
-| MCP servers externos (CLI) | 6 activos + 1 fallido |
+| MCP servers globales (CLI) | 3 activos + 1 fallido |
+| MCP servers project-scoped | 3 (figma, stitch, 21st-magic) |
 | MCP servers claude.ai | 3 (OAuth) |
 | **Total** | **~35 componentes** |
