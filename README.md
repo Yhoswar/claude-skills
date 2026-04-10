@@ -2,7 +2,7 @@
 
 Repositorio privado de **Yhosw** para replicar el setup completo de Claude Code en cualquier PC nueva.
 
-> **Fecha de última actualización:** 2026-04-08
+> **Fecha de última actualización:** 2026-04-10
 > **Modelo preferido:** `opusplan` | **Canal:** `latest`
 
 ---
@@ -73,9 +73,12 @@ Estas skills se instalan copiando este repo o registrándolo como marketplace (v
 | **emil-design-eng** | *(marketplace)* | Filosofía UI de Emil Kowalski — polish, animaciones, detalles invisibles |
 | **web-accessibility** | *(marketplace)* | Accesibilidad web WCAG 2.1 — ARIA, keyboard nav, screen readers |
 | **web-design-guidelines** | *(marketplace)* | Revisión de UI contra Web Interface Guidelines |
+| **claude-ads** | `/claude-ads/` | Suite de publicidad paga (18 skills + 10 agentes) — Google, Meta, LinkedIn, TikTok, Microsoft, Apple |
+| **claude-marketing** | `/claude-marketing/` | Suite de marketing (31 skills) — CRO, copy, email, social, branding |
 
 > **Nota:** `claude-seo` se recomienda instalar localmente por proyecto según necesidad, no globalmente.
 > **Nota:** `emil-design-eng`, `web-accessibility`, `web-design-guidelines` provienen del marketplace (plugin cache), no tienen carpeta en este repo.
+> **Nota:** `claude-ads` y `claude-marketing` se instalan como skills individuales (`ads-meta`, `marketing-ideas`, etc.) vía gstack marketing bundle — las carpetas del repo son el backup de los bundles completos.
 
 **Instalación manual (nueva PC):**
 ```bash
@@ -110,17 +113,19 @@ curl -sL "$BASE/docx/SKILL.md"        -o ~/.claude/skills/docx.md
 
 ---
 
-## 2.6 Skills Externas Adicionales (2026-03-31)
+## 2.6 Skills Externas Adicionales
 
-Skills de terceros instaladas como archivos `.md` sueltos en `~/.claude/skills/`.
+Skills de terceros instaladas en `~/.claude/skills/` como archivos `.md` sueltos o repos clonados.
 
 | Skill | Origen | Comando de instalación |
 |-------|--------|----------------------|
 | **content-research-writer** | ComposioHQ | `curl -L -o ~/.claude/skills/content-research-writer.md https://raw.githubusercontent.com/ComposioHQ/awesome-claude-skills/master/content-research-writer/SKILL.md` |
+| **dream** | [grandamenium/dream-skill](https://github.com/grandamenium/dream-skill) | `git clone --depth 1 https://github.com/grandamenium/dream-skill.git ~/.claude/skills/dream` |
 
 **Propósito:**
 
 - `content-research-writer`: Asistente de escritura con research, citations, hooks, feedback por sección. Para blog posts, artículos, documentación técnica, newsletters.
+- `dream`: Consolidación de memorias Claude cada 24h. Incluye sistema de **auto-dream**: el Stop hook (`should-dream.sh`) crea `~/.claude/.dream-pending` al finalizar sesión; al inicio de la siguiente sesión, el CLAUDE.md global lo detecta y ejecuta `/dream` en background. Setup requerido: agregar al Stop hook en `~/.claude/settings.json` y añadir instrucción en `~/.claude/CLAUDE.md`.
 
 > **Nota:** `systematic-debugging` (ChrisWiles) fue eliminado — redundante con `superpowers:systematic-debugging`. Nota: `superpowers` también fue deshabilitado el 2026-04-08 (cubierto por `claude-mem` + `gstack`).
 
@@ -130,7 +135,7 @@ Skills de terceros instaladas como archivos `.md` sueltos en `~/.claude/skills/`
 
 ## 2.7 Skills de Desarrollo — gstack (garrytan/gstack)
 
-Pack de 32 skills de Garry Tan (CEO de Y Combinator). Simula un equipo completo: CEO, Eng Manager, Designer, QA, Release Manager. **62k estrellas en GitHub.**
+Pack de **62 skills** de Garry Tan (CEO de Y Combinator). Incluye un equipo completo de ingeniería (32 skills core) + un equipo de marketing/CRO (30 skills). **62k estrellas en GitHub.**
 
 **Instalación (nueva PC):**
 ```bash
@@ -140,7 +145,7 @@ cd ~/.claude/skills/gstack && ./setup
 
 Requiere: **Bun** + **Node.js** (para /browse via Playwright)
 
-**Skills incluidas (32):**
+**Skills Core (32) — Equipo de ingeniería:**
 
 | Rol | Skills |
 |-----|--------|
@@ -152,6 +157,17 @@ Requiere: **Bun** + **Node.js** (para /browse via Playwright)
 | Chrome / Browser | `/browse`, `/connect-chrome`, `/setup-browser-cookies` |
 | Seguridad prod | `/careful`, `/freeze`, `/guard`, `/unfreeze` |
 | Utilidades | `/retro`, `/investigate`, `/cso`, `/learn`, `/checkpoint`, `/gstack-upgrade` |
+
+**Skills Marketing/CRO (30) — Bundle adicional:**
+
+| Categoría | Skills |
+|-----------|--------|
+| CRO | `/form-cro`, `/page-cro`, `/popup-cro`, `/onboarding-cro`, `/signup-flow-cro`, `/paywall-upgrade-cro` |
+| Marketing | `/cold-email`, `/email-sequence`, `/content-strategy`, `/copywriting`, `/copy-editing`, `/social-content`, `/marketing-ideas`, `/marketing-psychology`, `/lead-magnets`, `/launch-strategy`, `/free-tool-strategy` |
+| Sales | `/sales-enablement`, `/revops`, `/referral-program`, `/pricing-strategy`, `/competitor-alternatives`, `/churn-prevention`, `/customer-research` |
+| SEO/Analytics | `/programmatic-seo`, `/schema-markup`, `/analytics-tracking`, `/ab-test-setup`, `/site-architecture` |
+| Contexto | `/product-marketing-context` |
+| DevOps | `/setup-deploy` |
 
 **CLAUDE.md global requerido:**
 ```

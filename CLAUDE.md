@@ -20,6 +20,8 @@ Cuando el usuario instala o actualiza un skill globalmente en `~/.claude/skills/
 
 ```
 claude-skills/
+├── claude-ads/        ← Suite publicidad paga (18 skills + 10 agentes)
+├── claude-marketing/  ← Suite marketing (31 skills)
 ├── claude-seo/        ← Suite SEO completa (20 skills + 12 agentes)
 ├── composio/
 ├── cost-reducer/
