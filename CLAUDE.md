@@ -70,6 +70,24 @@ claude-skills/
 
 ---
 
+## Sistema /init — Backup y Restauración
+
+Para migrar todo tu stack de Claude Code a una nueva PC:
+
+### Crear snapshot (PC actual)
+```powershell
+./init/init-snapshot.ps1
+```
+
+### Restaurar en nueva PC
+```powershell
+./init/init-restore.ps1
+```
+
+Ver guía completa: `MIGRACION-PC.md` en el hub de setup.
+
+---
+
 ## Setup en PC Nueva — Guía Interactiva
 
 Cuando el usuario diga **"configura mi Claude Code"**, **"setup"**, **"nueva PC"** o similar, actuar como asistente de instalación:
