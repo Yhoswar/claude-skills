@@ -247,9 +247,7 @@ Disponibles en todas las sesiones.
 | MCP Server | Comando de instalación | Estado | Notas |
 |------------|----------------------|--------|-------|
 | **context7** | `claude mcp add context7 -- npx -y @upstash/context7-mcp` | ✓ Connected | Docs up-to-date de librerías |
-| **nano-banana** | `claude mcp add nano-banana -- npx -y nano-banana-mcp` | ✓ Connected | Generación/edición de imágenes con Gemini |
-| **n8n-mcp** | `claude mcp add n8n-mcp -- npx -y n8n-mcp` | ✓ Connected | n8n workflow automation — requiere N8N_API_URL y N8N_API_KEY |
-| **Mermaid Chart** | `claude mcp add mermaid-chart --transport http https://chatgpt.mermaid.ai/anthropic/mcp` | ✗ Failed | Validación y render de diagramas Mermaid |
+| **nano-banana** | `claude mcp add nano-banana -- npx -y nano-banana-mcp` | ✓ Connected | Generación/edición de imágenes — global porque `ads-generate` y `ads-photoshoot` se invocan desde cualquier proyecto cliente |
 
 ### 3.2 MCP Servers por Proyecto (project-scoped)
 
@@ -257,14 +255,15 @@ Solo disponibles en el proyecto donde se configuraron. Se instalan con `claude m
 
 | MCP Server | Comando de instalación | Notas |
 |------------|----------------------|-------|
+| **n8n-mcp** | `claude mcp add n8n-mcp -s project -- npx -y n8n-mcp` | Automatización n8n — solo en proyectos de workflows |
 | **21st-magic** | `claude mcp add 21st-magic -s project -- npx -y @21st-dev/magic@latest` | Componentes UI de 21st.dev |
 | **stitch** | `claude mcp add stitch -s project --transport http https://stitch.googleapis.com/mcp` | Stitch by Google |
 | **figma** | `claude mcp add figma -s project --transport http https://mcp.figma.com/mcp` | Lectura/escritura de diseños Figma — requiere token Figma |
 
-> **Por qué project-scoped:** Figma, Stitch y 21st-magic son herramientas de diseño que solo se necesitan en proyectos con trabajo de UI. Mantenerlos globales añade overhead innecesario en proyectos de backend o automatización.
+> **Por qué project-scoped:** n8n-mcp requiere env vars específicas por instancia y solo sirve en proyectos de automatización. Figma, Stitch y 21st-magic solo se necesitan en proyectos con UI. Mantenerlos globales añade overhead en cada sesión sin beneficio.
 
 > **Nota para Figma y Stitch:** Son servidores HTTP, usar flag `--transport http`.
-> **Nota para context7, 21st-magic, nano-banana:** Son servidores npx locales, no llevan flag de transport.
+> **Nota para n8n-mcp, context7, 21st-magic, nano-banana:** Son servidores npx locales, no llevan flag de transport.
 
 ### Variables de entorno requeridas
 
@@ -387,10 +386,11 @@ npm install -g @anthropic-ai/claude-code
 # 4. Configurar MCP servers externos — GLOBALES
 claude mcp add context7 -- npx -y @upstash/context7-mcp
 claude mcp add nano-banana -- npx -y nano-banana-mcp
-claude mcp add n8n-mcp -- npx -y n8n-mcp   # requiere N8N_API_URL y N8N_API_KEY en env
 
-# 4b. MCP servers PROJECT-SCOPED (solo en proyectos con diseño UI)
-# Ejecutar dentro de la carpeta del proyecto:
+# 4b. MCP servers PROJECT-SCOPED (ejecutar dentro de cada proyecto)
+# Automatización n8n (requiere N8N_API_URL y N8N_API_KEY en env):
+# claude mcp add n8n-mcp -s project -- npx -y n8n-mcp
+# Diseño UI:
 # claude mcp add 21st-magic -s project -- npx -y @21st-dev/magic@latest
 # claude mcp add stitch -s project --transport http https://stitch.googleapis.com/mcp
 # claude mcp add figma -s project --transport http https://mcp.figma.com/mcp

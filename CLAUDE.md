@@ -130,7 +130,7 @@ G) MCPs de proyecto (solo para proyectos con diseño UI)
 # MCPs globales:
 claude mcp add context7 -- npx -y @upstash/context7-mcp
 claude mcp add nano-banana -- npx -y nano-banana-mcp
-claude mcp add n8n-mcp -- npx -y n8n-mcp
+# n8n-mcp → project-scoped (ver categoría G o añadir manualmente por proyecto)
 
 # Skills sueltas:
 BASE="https://github.com/anthropics/skills/raw/refs/heads/main/skills"
@@ -167,8 +167,11 @@ cp -r claude-seo/skills/. ~/.claude/skills/
 # Incluye: impeccable, adapt, animate, shape, layout, optimize, etc.
 ```
 
-**G) MCPs de proyecto (correr dentro de cada proyecto):**
+**G) MCPs de proyecto (ejecutar dentro de cada proyecto):**
 ```bash
+# Automatización n8n (requiere N8N_API_URL y N8N_API_KEY):
+claude mcp add n8n-mcp -s project -- npx -y n8n-mcp
+# Diseño UI:
 claude mcp add 21st-magic -s project -- npx -y @21st-dev/magic@latest
 claude mcp add stitch -s project --transport http https://stitch.googleapis.com/mcp
 claude mcp add figma -s project --transport http https://mcp.figma.com/mcp
