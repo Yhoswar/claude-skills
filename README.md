@@ -423,11 +423,206 @@ claude mcp list
 
 | Categoría | Cantidad |
 |-----------|----------|
-| Plugins/Skills de marketplace | 7 activos + 1 deshabilitado (superpowers) |
-| Skills locales en este repo | 14 (+3 marketplace) |
-| Skills externas (anthropics/skills) | 3 instaladas + 3 disponibles |
-| Suite impeccable (diseño) | 18 skills (pbakaus/impeccable) |
+| Plugins de marketplace | 7 activos + 1 deshabilitado (superpowers) |
+| gStack skills (core + marketing) | ~53 skills (garrytan/gstack) |
+| Skills curadas en este repo | ~30 skills (yhosw-skills) |
+| Ads Suite | 12 skills (claude-ads/) |
+| SEO Suite | 5 skills (claude-seo/) |
+| Skills externas sueltas | 5 (dream, mcp-builder, pdf, docx, content-research-writer) |
 | MCP servers globales (CLI) | 3 activos + 1 fallido |
 | MCP servers project-scoped | 3 (figma, stitch, 21st-magic) |
-| MCP servers claude.ai | 3 (OAuth) |
-| **Total** | **~53 componentes** |
+| **Total skills activas** | **~111 skills** |
+
+---
+
+## 8. Catálogo Completo — Referencia para Nueva PC
+
+Todas las skills instaladas, organizadas por origen. Usar junto al `CLAUDE.md` de este repo para setup interactivo.
+
+### 8.1 gStack — Core Engineering (29 skills)
+
+**Fuente:** `garrytan/gstack` · **Instalación:** `git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack && cd ~/.claude/skills/gstack && ./setup`
+
+| Skill | Rol / Descripción |
+|-------|------------------|
+| `autoplan` | CEO/Producto — planificación automática de tareas |
+| `benchmark` | QA — comparar rendimiento antes/después |
+| `browse` | Browser — navegación web headless con Playwright |
+| `canary` | Release — monitoreo post-deploy |
+| `careful` | Seguridad — modo cauteloso para ops destructivas |
+| `checkpoint` | Utilidad — guardar y resumir estado de trabajo |
+| `codex` | Eng Manager — integración con OpenAI Codex CLI |
+| `connect-chrome` | Browser — controlar Chrome real con CDP |
+| `cso` | Seguridad — Chief Security Officer mode |
+| `design-consultation` | Diseñador — consultoría de diseño |
+| `design-html` | Diseñador — generar HTML final de diseños |
+| `design-review` | Diseñador — revisión de UI con ojo de diseñador |
+| `design-shotgun` | Diseñador — múltiples conceptos visuales rápidos |
+| `document-release` | Release — documentación post-ship |
+| `freeze` | Seguridad — restringir ediciones a archivos específicos |
+| `gstack` | Utilidad — browser headless optimizado para marketing |
+| `gstack-upgrade` | Utilidad — actualizar gstack a última versión |
+| `guard` | Seguridad — modo completo de seguridad |
+| `health` | QA — dashboard de calidad de código |
+| `investigate` | QA — debugging sistemático |
+| `land-and-deploy` | Release — workflow land + deploy |
+| `office-hours` | CEO/Producto — YC Office Hours simulation |
+| `qa` | QA — testing sistemático de features |
+| `qa-only` | QA — reporte de QA sin fixes |
+| `retro` | Utilidad — retrospectivas semanales |
+| `review` | Eng Manager — review de PRs |
+| `setup-browser-cookies` | Browser — importar cookies desde Chrome |
+| `ship` | Release — workflow completo de ship |
+| `unfreeze` | Seguridad — limpiar restricciones de freeze |
+
+### 8.2 gStack — Marketing/CRO/Sales Bundle (24 skills)
+
+**Fuente:** `garrytan/gstack` (mismo repo, mismo comando de instalación)
+
+| Skill | Categoría | Descripción |
+|-------|-----------|-------------|
+| `ab-test-setup` | Analytics | Configurar A/B tests |
+| `analytics-tracking` | Analytics | Setup de tracking y analytics |
+| `churn-prevention` | Sales | Estrategias de retención |
+| `cold-email` | Marketing | Emails B2B en frío |
+| `competitor-alternatives` | Sales | Páginas de alternativas a competidores |
+| `copywriting` | Marketing | Copy para publicidad paga |
+| `customer-research` | Sales | Investigación de clientes |
+| `email-sequence` | Marketing | Secuencias de email |
+| `form-cro` | CRO | Optimización de formularios |
+| `free-tool-strategy` | Marketing | Estrategia de herramientas gratuitas |
+| `launch-strategy` | Marketing | Estrategia de lanzamiento |
+| `lead-magnets` | Marketing | Creación de lead magnets |
+| `marketing-ideas` | Marketing | Ideas de marketing |
+| `onboarding-cro` | CRO | Optimización de onboarding |
+| `page-cro` | CRO | Optimización de páginas de conversión |
+| `paywall-upgrade-cro` | CRO | Optimización de upgrades/paywall |
+| `popup-cro` | CRO | Optimización de popups |
+| `pricing-strategy` | Sales | Estrategia de precios |
+| `referral-program` | Sales | Programa de referidos |
+| `revops` | Sales | Revenue operations |
+| `sales-enablement` | Sales | Habilitación de ventas |
+| `setup-deploy` | DevOps | Configurar settings de deployment |
+| `signup-flow-cro` | CRO | Optimización del flujo de registro |
+| `social-content` | Marketing | Contenido para redes sociales |
+
+### 8.3 Ads Suite (12 skills)
+
+**Fuente:** `Yhoswar/claude-skills` (carpeta `claude-ads/`) · **Instalación:** via `/install-skill yhosw-skills` o copiar carpeta
+
+| Skill | Descripción |
+|-------|-------------|
+| `ads` | Orquestador — coordinación multi-plataforma |
+| `ads-audit` | Auditoría completa de campañas (LinkedIn, TikTok, Microsoft) |
+| `ads-budget` | Estrategia de presupuesto y bidding |
+| `ads-competitor` | Inteligencia competitiva |
+| `ads-creative` | Calidad de creatividades por plataforma |
+| `ads-dna` | Extractor de Brand DNA para ads |
+| `ads-generate` | Generación de imágenes para ads |
+| `ads-google` | Google Ads — análisis profundo |
+| `ads-landing` | Landing page quality assessment |
+| `ads-meta` | Meta Ads — análisis profundo |
+| `ads-photoshoot` | Fotografía de producto para ads |
+| `ads-plan` | Planificación estratégica de campañas |
+
+### 8.4 SEO Suite (5 skills)
+
+**Fuente:** `Yhoswar/claude-skills` (carpeta `claude-seo/`) · **Instalación:** via `/install-skill yhosw-skills` o copiar carpeta
+
+| Skill | Descripción |
+|-------|-------------|
+| `seo` | Análisis SEO completo |
+| `seo-audit` | Auditoría técnica SEO |
+| `seo-local` | SEO local y GBP |
+| `seo-maps` | Maps intelligence (geo-grid, GBP, NAP) |
+| `seo-plan` | Planificación estratégica SEO |
+
+### 8.5 Skills Curadas en este Repo (via yhosw-skills)
+
+**Fuente:** `Yhoswar/claude-skills` · **Instalación:** `/install-skill yhosw-skills`
+
+| Skill | Descripción |
+|-------|-------------|
+| `adapt` | Adaptar diseños a diferentes contextos |
+| `animate` | Motion design con curvas de easing correctas |
+| `audit` | Checks de calidad técnica |
+| `bolder` | Amplificar diseños seguros/aburridos |
+| `caveman-compress` | Compresión de texto para CLAUDE.md y memoria |
+| `clarify` | Mejorar copy y mensajes UX |
+| `colorize` | Añadir color estratégico |
+| `cost-reducer` | Optimización de costos cloud/infra |
+| `critique` | Evaluación UX con scoring |
+| `customer-support` | Atención al cliente y flujos de soporte |
+| `delight` | Añadir momentos de joy y personalidad |
+| `distill` | Destilar diseños a su esencia |
+| `harden` | Fortalecer interfaces contra edge cases |
+| `humanizer` | Eliminar señales de escritura AI |
+| `impeccable` | Suite diseño web (7 ref docs + 18 steering skills) |
+| `layout` | Mejorar layout, espaciado y jerarquía |
+| `n8n-code-javascript` | JS en n8n |
+| `n8n-code-python` | Python en n8n |
+| `n8n-expression-syntax` | Sintaxis de expresiones n8n |
+| `n8n-mcp-tools-expert` | Guía de tools MCP en n8n |
+| `n8n-node-configuration` | Configuración de nodos n8n |
+| `n8n-validation-expert` | Interpretar errores de validación n8n |
+| `n8n-workflow-patterns` | Patrones de arquitectura n8n |
+| `notebooklm` | API completa para Google NotebookLM |
+| `optimize` | Diagnóstico y fixes de performance UI |
+| `overdrive` | Llevar interfaces más allá de lo convencional |
+| `polish` | Quality pass final antes de ship |
+| `quieter` | Reducir agresividad visual |
+| `researcher` | Investigación profunda multi-fuente |
+| `scalability` | Patrones de escalabilidad para sistemas |
+| `security` | Seguridad web/desktop — OWASP Top 10 |
+| `self-healing` | Auto-mejora: patrones, memoria, skills |
+| `shape` | Planificar UX/UI de una feature |
+| `typeset` | Mejorar tipografía |
+
+### 8.6 Skills Sueltas (instalación individual)
+
+| Skill | Fuente | Comando |
+|-------|--------|---------|
+| `dream` | `grandamenium/dream-skill` | `git clone --depth 1 https://github.com/grandamenium/dream-skill.git ~/.claude/skills/dream` |
+| `mcp-builder.md` | `anthropics/skills` | `curl -sL https://github.com/anthropics/skills/raw/refs/heads/main/skills/mcp-builder/SKILL.md -o ~/.claude/skills/mcp-builder.md` |
+| `pdf.md` | `anthropics/skills` | `curl -sL https://github.com/anthropics/skills/raw/refs/heads/main/skills/pdf/SKILL.md -o ~/.claude/skills/pdf.md` |
+| `docx.md` | `anthropics/skills` | `curl -sL https://github.com/anthropics/skills/raw/refs/heads/main/skills/docx/SKILL.md -o ~/.claude/skills/docx.md` |
+| `content-research-writer.md` | `ComposioHQ/awesome-claude-skills` | `curl -L -o ~/.claude/skills/content-research-writer.md https://raw.githubusercontent.com/ComposioHQ/awesome-claude-skills/master/content-research-writer/SKILL.md` |
+
+### 8.7 Skills Archivadas — Solo si se necesitan
+
+Estas skills fueron archivadas por solapamiento con equivalentes activos. **No están instaladas.** Si en el futuro se necesita alguna, reinstalar desde su fuente original (todas provienen de `garrytan/gstack` o del marketplace de plugins).
+
+| Skill | Reemplazada por | Fuente |
+|-------|----------------|--------|
+| `plan-ceo-review` | `office-hours` | garrytan/gstack |
+| `plan-eng-review` | `review` | garrytan/gstack |
+| `plan-design-review` | `design-review` | garrytan/gstack |
+| `content-strategy` | `marketing-ideas` + `social-content` | garrytan/gstack |
+| `copy-editing` | `copywriting` | garrytan/gstack |
+| `marketing-psychology` | — (teórico, no operativo) | garrytan/gstack |
+| `product-marketing-context` | — (contexto interno) | garrytan/gstack |
+| `programmatic-seo` | `seo-plan` | garrytan/gstack |
+| `schema-markup` | agente `seo-schema` | garrytan/gstack |
+| `site-architecture` | `seo-plan` | garrytan/gstack |
+| `ads-create` | `ads-creative` | Yhoswar/claude-skills |
+| `ads-apple` | — (sin cliente activo) | Yhoswar/claude-skills |
+| `ads-linkedin` | — (sin cliente activo) | Yhoswar/claude-skills |
+| `ads-microsoft` | — (sin cliente activo) | Yhoswar/claude-skills |
+| `ads-tiktok` | — (sin cliente activo) | Yhoswar/claude-skills |
+| `ads-youtube` | — (sin cliente activo) | Yhoswar/claude-skills |
+| `seo-technical` | `seo-audit` | Yhoswar/claude-skills |
+| `seo-dataforseo` | agente `seo-dataforseo` | Yhoswar/claude-skills |
+| `seo-firecrawl` | — | Yhoswar/claude-skills |
+| `seo-backlinks` | `seo-audit` | Yhoswar/claude-skills |
+| `seo-competitor-pages` | `seo-audit` | Yhoswar/claude-skills |
+| `seo-hreflang` | `seo-technical` (agente) | Yhoswar/claude-skills |
+| `seo-image-gen` | `ads-generate` | Yhoswar/claude-skills |
+| `seo-geo` | agente `seo-geo` | Yhoswar/claude-skills |
+| `seo-google` | agente `seo-google` | Yhoswar/claude-skills |
+| `seo-schema` | agente `seo-schema` | Yhoswar/claude-skills |
+| `seo-sitemap` | agente `seo-sitemap` | Yhoswar/claude-skills |
+| `seo-content` | agente `seo-content` | Yhoswar/claude-skills |
+| `seo-page` | `seo-audit` | Yhoswar/claude-skills |
+| `seo-programmatic` | `seo-plan` | Yhoswar/claude-skills |
+| `ai-seo` | `seo` | Yhoswar/claude-skills |
+| `seo-images` | `ads-generate` | Yhoswar/claude-skills |
