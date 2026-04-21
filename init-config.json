@@ -1,0 +1,21 @@
+{
+  "include_sessions": false,
+  "include_memories": false,
+  "description": "Configuración para sistema init de Claude Code — Yhosw",
+  "mcp_installers": {
+    "google-ads-mcp.exe": {
+      "type": "manual",
+      "note": "Descargar desde repo oficial y colocar en ~/.local/bin/"
+    },
+    "n8n-mcp": {
+      "type": "npm",
+      "package": "n8n-mcp"
+    }
+  },
+  "restore_checklist": [
+    "Verificar Google Drive sincronizado",
+    "Reinstalar MCPs manualmente",
+    "Ejecutar claude y verificar skills",
+    "Probar /dream o /status"
+  ]
+}
