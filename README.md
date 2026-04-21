@@ -2,7 +2,7 @@
 
 Repositorio privado de **Yhosw** para replicar el setup completo de Claude Code en cualquier PC nueva.
 
-> **Fecha de última actualización:** 2026-04-10
+> **Fecha de última actualización:** 2026-04-20
 > **Modelo preferido:** `opusplan` | **Canal:** `latest`
 
 ---
@@ -179,7 +179,49 @@ Usar /browse de gstack para todo web browsing. Nunca usar mcp__claude-in-chrome_
 
 ---
 
-## 2.8 Agent-Skill Maps (por dominio)
+## 2.8 Suite de Diseño — impeccable (pbakaus/impeccable)
+
+Pack de **18 skills** de diseño web con vocabulario profundo y guías anti-"AI slop". Instalado 2026-04-20.
+
+**Instalación (nueva PC):**
+```bash
+git clone https://github.com/pbakaus/impeccable /tmp/impeccable
+cp -r /tmp/impeccable/.claude/skills/* ~/.claude/skills/
+```
+
+**Skill principal:**
+
+| Skill | Carpeta | Descripción |
+|-------|---------|-------------|
+| **impeccable** | `/impeccable/` | Onboarding al sistema de diseño. 7 ref docs: typography, color OKLCH, spatial, motion, interaction, responsive, ux-writing |
+
+**18 comandos de steering:**
+
+| Skill | Descripción |
+|-------|-------------|
+| `adapt` | Adaptar diseño a diferentes contextos/plataformas |
+| `animate` | Añadir motion design con curvas de easing correctas |
+| `audit` | Checks de calidad técnica (a11y, performance) |
+| `bolder` | Amplificar diseños seguros/aburridos |
+| `clarify` | Mejorar copy y mensajes de UX |
+| `colorize` | Añadir color estratégico |
+| `critique` | Evaluación UX con scoring y personas |
+| `delight` | Añadir momentos de joy y personalidad |
+| `distill` | Destilar diseños a su esencia |
+| `harden` | Fortalecer interfaces contra edge cases |
+| `layout` | Mejorar layout, espaciado y jerarquía visual |
+| `optimize` | Diagnóstico y fixes de performance UI |
+| `overdrive` | Llevar interfaces más allá de lo convencional |
+| `polish` | Quality pass final antes de ship |
+| `quieter` | Reducir agresividad visual |
+| `shape` | Planificar UX/UI de una feature |
+| `typeset` | Mejorar tipografía |
+
+> Uso: `/impeccable teach` para onboarding en proyecto nuevo → `/impeccable craft` para generar → comandos individuales para steering fino.
+
+---
+
+## 2.9 Agent-Skill Maps (por dominio)
 
 El archivo `~/.claude/agent-skill-map.md` fue dividido en 4 archivos de dominio para reducir tokens cargados por sesión. Solo el archivo relevante al proyecto activo se carga:
 
@@ -377,14 +419,15 @@ claude mcp list
 
 ---
 
-## Componentes totales: 20+
+## Componentes totales
 
 | Categoría | Cantidad |
 |-----------|----------|
 | Plugins/Skills de marketplace | 7 activos + 1 deshabilitado (superpowers) |
 | Skills locales en este repo | 14 (+3 marketplace) |
 | Skills externas (anthropics/skills) | 3 instaladas + 3 disponibles |
+| Suite impeccable (diseño) | 18 skills (pbakaus/impeccable) |
 | MCP servers globales (CLI) | 3 activos + 1 fallido |
 | MCP servers project-scoped | 3 (figma, stitch, 21st-magic) |
 | MCP servers claude.ai | 3 (OAuth) |
-| **Total** | **~35 componentes** |
+| **Total** | **~53 componentes** |

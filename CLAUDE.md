@@ -23,6 +23,24 @@ claude-skills/
 ├── claude-ads/        ← Suite publicidad paga (18 skills + 10 agentes)
 ├── claude-marketing/  ← Suite marketing (31 skills)
 ├── claude-seo/        ← Suite SEO completa (20 skills + 12 agentes)
+├── impeccable/        ← Suite diseño web — skill principal (7 ref docs)
+├── adapt/             ┐
+├── animate/           │
+├── audit/             │
+├── bolder/            │
+├── clarify/           │
+├── colorize/          │
+├── critique/          │ impeccable — 17 skills de steering
+├── delight/           │
+├── distill/           │
+├── harden/            │
+├── layout/            │
+├── optimize/          │
+├── overdrive/         │
+├── polish/            │
+├── quieter/           │
+├── shape/             │
+├── typeset/           ┘
 ├── composio/
 ├── cost-reducer/
 ├── create-skill/
