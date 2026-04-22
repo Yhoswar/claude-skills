@@ -537,6 +537,24 @@ Todas las skills instaladas, organizadas por origen. Usar junto al `CLAUDE.md` d
 | `seo-maps` | Maps intelligence (geo-grid, GBP, NAP) |
 | `seo-plan` | Planificación estratégica SEO |
 
+---
+
+## Separación Global vs Workspace
+
+### Skills en ~/.claude/CLAUDE.md (global — toda sesión)
+security, researcher, self-healing, humanizer, dream,
+impeccable + 9 steering skills, ui-ux-pro-max,
+context-mode, claude-mem, mcp-builder, pdf, docx,
+content-research-writer, gstack core (browse, qa, review, ship, investigate)
+
+### Skills documentadas solo en workspace CLAUDE.md
+n8n suite (7 skills) · ads bundle (12) · seo bundle (5) · marketing bundle (12) ·
+CRO bundle (8) · customer-support · cost-reducer · gstack marketing bundle
+
+### Regla para experimentos fuera del workspace
+Instalar skills necesarias localmente en carpeta del proyecto.
+No se activan automáticamente fuera del workspace.
+
 ### 8.5 Skills Curadas en este Repo (via yhosw-skills)
 
 **Fuente:** `Yhoswar/claude-skills` · **Instalación:** `/install-skill yhosw-skills`
